@@ -32,12 +32,16 @@ const LinkedList = function () {
     }
 
     function prepend(value) {
-        let node = new Node(value);
-        let current;
+        let node = new Node(value); 
         if (head == null) {
             head = node;
+            size++
         } else {
-
+            let tmp  = head;
+            node.next = tmp;
+            node = head; 
+            console.log(head)
+            size++
         }   
     }
 
@@ -49,4 +53,5 @@ linkedList.append(3);
 linkedList.append(4);
 linkedList.append(5);
 linkedList.append(10)
+linkedList.prepend(2)
 linkedList.printListsize();
