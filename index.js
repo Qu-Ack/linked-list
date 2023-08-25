@@ -22,6 +22,9 @@ const LinkedList = function () {
             head = node
             size++;
         } else {
+            // traversing thorough the list. we make a tmp var and set it equal to head.
+            // the next property of our head is also a node so until the next property becomes null this loop will go on.
+            // and in the loop we set tmp to the next property which is the next node.
             let tmp = head;
             while(tmp.next != null) {
                 tmp = tmp.next; 
@@ -86,7 +89,7 @@ const LinkedList = function () {
         previous.next = null;
     }
 
-    function find(value)  {
+    function contains(value)  {
         if (head == null) {
             return null
         }
@@ -104,7 +107,48 @@ const LinkedList = function () {
         }
     }
 
-    return {append , prepend , printListsize , printHead , printTail , at , pop , find}
+    function find(value)  {
+        let counter = 0;
+        if (head == null) {
+            return null;
+        }
+        let tmp = head;
+        while (tmp.next) {
+            
+            
+            // if we will not use this code then our while loop will not consider the last element of our list and it will skip over it.
+            // to prevent that we check the next to next element in prior and return the result if any.
+            if (tmp.next.next == null) {
+                counter++
+                if (tmp.next.data == value) {
+                    return counter;
+                }
+            }
+            if (tmp.data == value) {
+                return counter;
+            }
+            tmp = tmp.next;
+            counter++
+        }
+    } 
+
+    function toString() {
+        if (head == null) {
+            return null
+        }
+        let result = ``;
+        let tmp = head; 
+        while(tmp.next !== null) {
+            result += `(${tmp.data}) -> `
+            if (tmp.next.next == null) {
+                result += `(${tmp.next.data}) -> null.`
+                return result; 
+            }
+            tmp = tmp.next
+        }
+ 
+    }
+    return {append , prepend , printListsize , printHead , printTail , at , pop , contains , find , toString}
 }
 let linkedList =  LinkedList();
 linkedList.append(3);
@@ -119,4 +163,5 @@ linkedList.append(12)
 linkedList.printHead()
 linkedList.pop()
 linkedList.printHead()
-console.log(linkedList.find(2))
+console.log(linkedList.find(10))
+console.log(linkedList.toString())
