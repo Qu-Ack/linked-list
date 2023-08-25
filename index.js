@@ -61,10 +61,32 @@ const LinkedList = function () {
     }
 
     function at(index) {
-        
+        if (index < 0 ) {
+            return null;
+        } 
+
+        let tmp = head;
+        for (let i = 0; i < index ;i++) {
+            tmp = tmp.next;
+        }
+        return tmp.data;
     }
 
-    return {append , prepend , printListsize , printHead , printTail}
+    function pop() {
+        if (head == null) {
+            return;
+        }
+
+        let previous = null;
+        let tmp = head;
+        while(tmp.next) {
+            previous = tmp;
+            tmp = tmp.next;
+        }
+        previous.next = null;
+    }
+
+    return {append , prepend , printListsize , printHead , printTail , at , pop}
 }
 let linkedList =  LinkedList();
 linkedList.append(3);
@@ -73,8 +95,10 @@ linkedList.append(5);
 linkedList.prepend(2)
 linkedList.append(10)
 linkedList.append(12)
-linkedList.printListsize();
-linkedList.printHead();
-linkedList.printTail();
-
+// linkedList.printListsize();
+// linkedList.printHead();
+// linkedList.printTail();
+linkedList.printHead()
+linkedList.pop()
+linkedList.printHead()
 
