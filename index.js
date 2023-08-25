@@ -86,7 +86,25 @@ const LinkedList = function () {
         previous.next = null;
     }
 
-    return {append , prepend , printListsize , printHead , printTail , at , pop}
+    function find(value)  {
+        if (head == null) {
+            return null
+        }
+        let tmp = head;
+        while (tmp.next) {
+            if (tmp.next.next == null) {
+                if (tmp.next.data == value) {
+                    return true;
+                }
+            }
+            if(tmp.data == value) {
+                return true
+            }
+            tmp = tmp.next;
+        }
+    }
+
+    return {append , prepend , printListsize , printHead , printTail , at , pop , find}
 }
 let linkedList =  LinkedList();
 linkedList.append(3);
@@ -101,4 +119,4 @@ linkedList.append(12)
 linkedList.printHead()
 linkedList.pop()
 linkedList.printHead()
-
+console.log(linkedList.find(2))
